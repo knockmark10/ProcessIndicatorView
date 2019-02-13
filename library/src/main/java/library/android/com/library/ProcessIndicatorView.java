@@ -112,7 +112,7 @@ public class ProcessIndicatorView extends Fragment {
     }
 
     public void previousStage() {
-        if ((currentProcess + 1) > 0 && getActivity() != null) {
+        if (currentProcess > 0 && getActivity() != null) {
             getCurrentProcessView(getCurrentProcess()).setCircleBackgroundColor(ContextCompat.getColor(getActivity(), unselectedProcessColor));
             getCurrentProcessView(getCurrentProcess()).setBorderColor(ContextCompat.getColor(getActivity(), unselectedProcessColor));
             if ((currentProcess + 1) == processes.size()) {
@@ -124,7 +124,6 @@ public class ProcessIndicatorView extends Fragment {
             getCurrentProcessView(getCurrentProcess()).setCircleBackgroundColor(ContextCompat.getColor(getActivity(), selectedProcessColor));
             getCurrentProcessView(getCurrentProcess()).setBorderColor(ContextCompat.getColor(getActivity(), selectedProcessColor));
             AnimatingManager.scaleUpView(getCurrentProcessView(getCurrentProcess()), 1f, 1.5f);
-
         }
     }
 
