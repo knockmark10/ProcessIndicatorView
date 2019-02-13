@@ -3,7 +3,7 @@ package library.android.com.processindicator
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
-import library.android.com.library.ProcessIndicatorFragment
+import library.android.com.library.ProcessIndicatorView
 
 class MainActivity : AppCompatActivity() {
 
@@ -11,9 +11,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-//        this.process_view.setTrackColor(R.color.colorAccent)
-
-        val view = ProcessIndicatorFragment.Builder()
+        val view = ProcessIndicatorView.Builder()
             .setTrackColor(R.color.colorPrimaryDark)
             .setSelectedProcessColor(R.color.colorAccent)
             .setUnselectedProcessColor(R.color.colorPrimaryDark)
@@ -31,9 +29,5 @@ class MainActivity : AppCompatActivity() {
         this.btn_previous.setOnClickListener {
             view.previousStage()
         }
-
-//        supportFragmentManager.beginTransaction().replace(R.id.main_container, processFragment).commitAllowingStateLoss()
-
-//        val scheme = ProcessScheme(this.process_view)
     }
 }

@@ -17,7 +17,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProcessIndicatorFragment extends Fragment {
+public class ProcessIndicatorView extends Fragment {
 
     private int trackColor;
     private int selectedProcessColor;
@@ -38,7 +38,7 @@ public class ProcessIndicatorFragment extends Fragment {
     private CircleImageView payView;
 
     @SuppressLint("ValidFragment")
-    private ProcessIndicatorFragment() {
+    private ProcessIndicatorView() {
     }
 
     @Nullable
@@ -221,19 +221,19 @@ public class ProcessIndicatorFragment extends Fragment {
             return this;
         }
 
-        public ProcessIndicatorFragment create(int id, FragmentManager fragmentManager) {
+        public ProcessIndicatorView create(int viewId, FragmentManager fragmentManager) {
             checkNotNull();
-            ProcessIndicatorFragment processIndicatorFragment = new ProcessIndicatorFragment();
-            processIndicatorFragment.trackColor = this.trackColor;
-            processIndicatorFragment.selectedProcessColor = this.selectedProcessColor;
-            processIndicatorFragment.unselectedProcessColor = this.unselectedProcessColor;
-            processIndicatorFragment.searchIcon = this.searchIcon;
-            processIndicatorFragment.flightIcon = this.flightIcon;
-            processIndicatorFragment.seatIcon = this.seatIcon;
-            processIndicatorFragment.purchaseIcon = this.purchaseIcon;
-            processIndicatorFragment.payIcon = this.payIcon;
-            fragmentManager.beginTransaction().replace(id, processIndicatorFragment).commitAllowingStateLoss();
-            return processIndicatorFragment;
+            ProcessIndicatorView processIndicatorView = new ProcessIndicatorView();
+            processIndicatorView.trackColor = this.trackColor;
+            processIndicatorView.selectedProcessColor = this.selectedProcessColor;
+            processIndicatorView.unselectedProcessColor = this.unselectedProcessColor;
+            processIndicatorView.searchIcon = this.searchIcon;
+            processIndicatorView.flightIcon = this.flightIcon;
+            processIndicatorView.seatIcon = this.seatIcon;
+            processIndicatorView.purchaseIcon = this.purchaseIcon;
+            processIndicatorView.payIcon = this.payIcon;
+            fragmentManager.beginTransaction().replace(viewId, processIndicatorView).commitAllowingStateLoss();
+            return processIndicatorView;
         }
 
         private void checkNotNull() {
