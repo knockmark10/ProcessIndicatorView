@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
   
 **6)** That's it! It requires no more to set up. The animations will be handled automatically. Just enjoy. 
   
-![enter image description here](https://imgur.com/a/dnTIT3P)
+![Demo](https://i.imgur.com/DNtNHyF.gif)
   
 ### Restriction
  
