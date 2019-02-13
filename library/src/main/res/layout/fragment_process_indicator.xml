@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="16dp">
+
+    <View
+        android:id="@+id/process_track"
+        android:layout_width="0dp"
+        android:layout_height="5dp"
+        android:background="@color/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/process_search_stage"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        app:civ_border_color="@color/colorPrimary"
+        app:civ_border_width="4dp"
+        app:civ_circle_background_color="@color/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="@+id/process_track"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/process_track" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/process_fligth_stage"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        app:civ_border_color="@color/colorPrimary"
+        app:civ_border_width="4dp"
+        app:civ_circle_background_color="@color/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="@+id/process_track"
+        app:layout_constraintEnd_toStartOf="@+id/process_seat_stage"
+        app:layout_constraintStart_toEndOf="@+id/process_search_stage"
+        app:layout_constraintTop_toTopOf="@+id/process_track" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/process_seat_stage"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        app:civ_border_color="@color/colorPrimary"
+        app:civ_border_width="4dp"
+        app:civ_circle_background_color="@color/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="@+id/process_track"
+        app:layout_constraintEnd_toStartOf="@+id/process_pay_stage"
+        app:layout_constraintStart_toEndOf="@+id/process_search_stage"
+        app:layout_constraintTop_toTopOf="@+id/process_track" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/process_purchase_stage"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        app:civ_border_color="@color/colorPrimary"
+        app:civ_border_width="4dp"
+        app:civ_circle_background_color="@color/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="@+id/process_track"
+        app:layout_constraintEnd_toStartOf="@+id/process_pay_stage"
+        app:layout_constraintStart_toEndOf="@+id/process_seat_stage"
+        app:layout_constraintTop_toTopOf="@+id/process_track" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/process_pay_stage"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        app:civ_border_color="@color/colorPrimary"
+        app:civ_border_width="4dp"
+        app:civ_circle_background_color="@color/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="@+id/process_track"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/process_track" />
+
+
+</android.support.constraint.ConstraintLayout>
