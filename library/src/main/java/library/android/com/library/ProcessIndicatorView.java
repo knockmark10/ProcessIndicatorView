@@ -98,14 +98,22 @@ public class ProcessIndicatorView extends Fragment {
         if ((currentProcess + 1) < processes.size() && getActivity() != null) {
             getCurrentProcessView(getCurrentProcess()).setCircleBackgroundColor(ContextCompat.getColor(getActivity(), unselectedProcessColor));
             getCurrentProcessView(getCurrentProcess()).setBorderColor(ContextCompat.getColor(getActivity(), unselectedProcessColor));
-            AnimatingManager.scaleDownView(getCurrentProcessView(getCurrentProcess()), 1.5f, 1f);
+            if (currentProcess == 0) {
+                AnimatingManager.scaleDownViewFirst(getCurrentProcessView(getCurrentProcess()), 1.5f, 1f);
+            } else {
+                AnimatingManager.scaleDownView(getCurrentProcessView(getCurrentProcess()), 1.5f, 1f);
+            }
             currentProcess++;
             getCurrentProcessView(getCurrentProcess()).setCircleBackgroundColor(ContextCompat.getColor(getActivity(), selectedProcessColor));
             getCurrentProcessView(getCurrentProcess()).setBorderColor(ContextCompat.getColor(getActivity(), selectedProcessColor));
             if ((currentProcess + 1) == processes.size()) {
                 AnimatingManager.scaleUpViewLast(getCurrentProcessView(getCurrentProcess()), 1f, 1.5f);
             } else {
-                AnimatingManager.scaleUpView(getCurrentProcessView(getCurrentProcess()), 1f, 1.5f);
+                if (currentProcess == 0) {
+                    AnimatingManager.scaleUpViewFirst(getCurrentProcessView(getCurrentProcess()), 1f, 1.5f);
+                } else {
+                    AnimatingManager.scaleUpView(getCurrentProcessView(getCurrentProcess()), 1f, 1.5f);
+                }
             }
         }
 
@@ -123,7 +131,11 @@ public class ProcessIndicatorView extends Fragment {
             currentProcess--;
             getCurrentProcessView(getCurrentProcess()).setCircleBackgroundColor(ContextCompat.getColor(getActivity(), selectedProcessColor));
             getCurrentProcessView(getCurrentProcess()).setBorderColor(ContextCompat.getColor(getActivity(), selectedProcessColor));
-            AnimatingManager.scaleUpView(getCurrentProcessView(getCurrentProcess()), 1f, 1.5f);
+            if (currentProcess == 0) {
+                AnimatingManager.scaleUpViewFirst(getCurrentProcessView(getCurrentProcess()), 1f, 1.5f);
+            } else {
+                AnimatingManager.scaleUpView(getCurrentProcessView(getCurrentProcess()), 1f, 1.5f);
+            }
         }
     }
 
@@ -165,7 +177,7 @@ public class ProcessIndicatorView extends Fragment {
         if (getActivity() != null) {
             getCurrentProcessView(getCurrentProcess()).setCircleBackgroundColor(ContextCompat.getColor(getActivity(), selectedProcessColor));
             getCurrentProcessView(getCurrentProcess()).setBorderColor(ContextCompat.getColor(getActivity(), selectedProcessColor));
-            AnimatingManager.scaleUpView(getCurrentProcessView(getCurrentProcess()), 1f, 1.5f);
+            AnimatingManager.scaleUpViewFirst(getCurrentProcessView(getCurrentProcess()), 1f, 1.5f);
         }
     }
 

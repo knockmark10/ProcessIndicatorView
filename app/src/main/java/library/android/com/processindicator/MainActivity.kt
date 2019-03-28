@@ -16,9 +16,9 @@ class MainActivity : AppCompatActivity() {
             .setSelectedProcessColor(R.color.colorAccent)
             .setUnselectedProcessColor(R.color.colorPrimaryDark)
             .setSearchingStageIcon(R.drawable.ic_search)
-            .setFlightStageIcon(R.drawable.ic_search)
+            .setFlightStageIcon(R.drawable.ic_flight_ico)
             .setSeatStageIcon(R.drawable.ic_search)
-            .setPurchaseStageIcon(R.drawable.ic_search)
+            .setPurchaseStageIcon(R.drawable.paso_4)
             .setPayStageIcon(R.drawable.ic_search)
             .create(R.id.main_container, supportFragmentManager)
 
