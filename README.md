@@ -57,8 +57,8 @@ public class MainActivity extends AppCompatActivity {
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState){
-	ProcessIndicatorView view = new ProcessIndicatorView.Builder().
-	    setTrackColor(R.color.colorPrimaryDark)
+	ProcessIndicatorView view = new ProcessIndicatorView.Builder()
+	    .setTrackColor(R.color.colorPrimaryDark)
         .setSelectedProcessDrawable(R.drawable.round_test)
         .setUnselectedProcessDrawable(R.drawable.round_test_normal)
         .setFistStageIcon(R.drawable.ic_search)
