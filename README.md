@@ -57,16 +57,16 @@ public class MainActivity extends AppCompatActivity {
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState){
-	ProcessIndicatorView view = new ProcessIndicatorView.Builder()
-		.setTrackColor(R.color.colorPrimaryDark)  
-		.setSelectedProcessColor(R.color.colorAccent)  
-		.setUnselectedProcessColor(R.color.colorPrimaryDark)  
-		.setSearchingStageIcon(R.drawable.ic_search)  
-		.setFlightStageIcon(R.drawable.ic_flight)  
-		.setSeatStageIcon(R.drawable.ic_seat)  
-		.setPurchaseStageIcon(R.drawable.ic_purchase)  
-		.setPayStageIcon(R.drawable.ic_pay)  
-		.create(R.id.process_view, getSupportFragmentManager())
+	ProcessIndicatorView view = new ProcessIndicatorView.Builder().
+	    setTrackColor(R.color.colorPrimaryDark)
+        .setSelectedProcessDrawable(R.drawable.round_test)
+        .setUnselectedProcessDrawable(R.drawable.round_test_normal)
+        .setFistStageIcon(R.drawable.ic_search)
+        .setSecondStageIcon(R.drawable.ic_search)
+        .setThirdStageIcon(R.drawable.ic_search)
+        .setFourthStageIcon(R.drawable.ic_search)
+        .setFiftsStageIcon(R.drawable.ic_search)
+        .create(R.id.main_container, supportFragmentManager)
 	}
 }
 ```  
@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
   
 ### Restriction
  
- As for now, the library is not dinamyc in terms of number of items displayed on the bar. It's limited to 5 items and each item has its own name. 
+ As for now, the library is not dinamyc in terms of number of items displayed on the bar. It's limited to 5 items.
   
 ### License  
   
