@@ -13,13 +13,13 @@ class MainActivity : AppCompatActivity() {
 
         val view = ProcessIndicatorView.Builder()
             .setTrackColor(R.color.colorPrimaryDark)
-            .setSelectedProcessColor(R.color.colorAccent)
-            .setUnselectedProcessColor(R.color.colorPrimaryDark)
-            .setSearchingStageIcon(R.drawable.ic_search)
-            .setFlightStageIcon(R.drawable.ic_flight_ico)
-            .setSeatStageIcon(R.drawable.ic_search)
-            .setPurchaseStageIcon(R.drawable.paso_4)
-            .setPayStageIcon(R.drawable.ic_search)
+            .setSelectedProcessDrawable(R.drawable.round_test)
+            .setUnselectedProcessDrawable(R.drawable.round_test_normal)
+            .setFistStageIcon(R.drawable.ic_search)
+            .setSecondStageIcon(R.drawable.ic_search)
+            .setThirdStageIcon(R.drawable.ic_search)
+            .setFourthStageIcon(R.drawable.ic_search)
+            .setFiftsStageIcon(R.drawable.ic_search)
             .create(R.id.main_container, supportFragmentManager)
 
         this.btn_next.setOnClickListener {

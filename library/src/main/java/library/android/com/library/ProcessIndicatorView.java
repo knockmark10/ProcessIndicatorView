@@ -12,7 +12,8 @@ import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import de.hdodenhof.circleimageview.CircleImageView;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,22 +21,27 @@ import java.util.List;
 public class ProcessIndicatorView extends Fragment {
 
     private int trackColor;
-    private int selectedProcessColor;
-    private int unselectedProcessColor;
-    private int searchIcon;
-    private int flightIcon;
-    private int seatIcon;
-    private int purchaseIcon;
-    private int payIcon;
+    private int selectedProcessDrawable;
+    private int unselectedProcessDrawable;
+    private int firstIcon;
+    private int secondIcon;
+    private int thirdIcon;
+    private int fourthIcon;
+    private int fifthIcon;
     private int currentProcess = 0;
     private List<StageProcess> processes = new ArrayList<>();
 
     private View trackView;
-    private CircleImageView searchView;
-    private CircleImageView fligthView;
-    private CircleImageView seatView;
-    private CircleImageView purchaseView;
-    private CircleImageView payView;
+    private ImageView ivFirstStage;
+    private ImageView ivSecondStage;
+    private ImageView ivThirdStage;
+    private ImageView ivFourthStage;
+    private ImageView ivFifthStage;
+    private FrameLayout firstStageContainer;
+    private FrameLayout secondStageContainer;
+    private FrameLayout thirdStageContainer;
+    private FrameLayout fourthStageContainer;
+    private FrameLayout fifthStageContainer;
 
     @SuppressLint("ValidFragment")
     private ProcessIndicatorView() {
@@ -57,62 +63,60 @@ public class ProcessIndicatorView extends Fragment {
     }
 
     private void initList() {
-        processes.add(StageProcess.Search);
-        processes.add(StageProcess.Flight);
-        processes.add(StageProcess.Seat);
-        processes.add(StageProcess.Purchase);
-        processes.add(StageProcess.Pay);
+        processes.add(StageProcess.First);
+        processes.add(StageProcess.Second);
+        processes.add(StageProcess.Third);
+        processes.add(StageProcess.Fourth);
+        processes.add(StageProcess.Fifth);
     }
 
     private void bindResources(View view) {
         trackView = view.findViewById(R.id.process_track);
-        searchView = view.findViewById(R.id.process_search_stage);
-        fligthView = view.findViewById(R.id.process_fligth_stage);
-        seatView = view.findViewById(R.id.process_seat_stage);
-        purchaseView = view.findViewById(R.id.process_purchase_stage);
-        payView = view.findViewById(R.id.process_pay_stage);
+        ivFirstStage = view.findViewById(R.id.process_first_stage_image);
+        firstStageContainer = view.findViewById(R.id.process_first_stage);
+        ivSecondStage = view.findViewById(R.id.process_second_stage_image);
+        secondStageContainer = view.findViewById(R.id.process_second_stage);
+        ivThirdStage = view.findViewById(R.id.process_third_stage_image);
+        thirdStageContainer = view.findViewById(R.id.process_third_stage);
+        ivFourthStage = view.findViewById(R.id.process_fourth_stage_image);
+        fourthStageContainer = view.findViewById(R.id.process_fourth_stage);
+        ivFifthStage = view.findViewById(R.id.process_fifth_stage_image);
+        fifthStageContainer = view.findViewById(R.id.process_fifth_stage);
     }
 
     private void setupView() {
         if (getActivity() != null) {
             trackView.setBackgroundColor(ContextCompat.getColor(getActivity(), trackColor));
-            searchView.setImageDrawable(ContextCompat.getDrawable(getActivity(), searchIcon));
-            searchView.setCircleBackgroundColor(ContextCompat.getColor(getActivity(), unselectedProcessColor));
-            searchView.setBorderColor(ContextCompat.getColor(getActivity(), unselectedProcessColor));
-            fligthView.setImageDrawable(ContextCompat.getDrawable(getActivity(), flightIcon));
-            fligthView.setCircleBackgroundColor(ContextCompat.getColor(getActivity(), unselectedProcessColor));
-            fligthView.setBorderColor(ContextCompat.getColor(getActivity(), unselectedProcessColor));
-            seatView.setImageDrawable(ContextCompat.getDrawable(getActivity(), seatIcon));
-            seatView.setCircleBackgroundColor(ContextCompat.getColor(getActivity(), unselectedProcessColor));
-            seatView.setBorderColor(ContextCompat.getColor(getActivity(), unselectedProcessColor));
-            purchaseView.setImageDrawable(ContextCompat.getDrawable(getActivity(), purchaseIcon));
-            purchaseView.setCircleBackgroundColor(ContextCompat.getColor(getActivity(), unselectedProcessColor));
-            purchaseView.setBorderColor(ContextCompat.getColor(getActivity(), unselectedProcessColor));
-            payView.setImageDrawable(ContextCompat.getDrawable(getActivity(), payIcon));
-            payView.setCircleBackgroundColor(ContextCompat.getColor(getActivity(), unselectedProcessColor));
-            payView.setBorderColor(ContextCompat.getColor(getActivity(), unselectedProcessColor));
+            ivFirstStage.setImageDrawable(ContextCompat.getDrawable(getActivity(), firstIcon));
+            firstStageContainer.setBackground(ContextCompat.getDrawable(getActivity(), unselectedProcessDrawable));
+            ivSecondStage.setImageDrawable(ContextCompat.getDrawable(getActivity(), secondIcon));
+            secondStageContainer.setBackground(ContextCompat.getDrawable(getActivity(), unselectedProcessDrawable));
+            ivThirdStage.setImageDrawable(ContextCompat.getDrawable(getActivity(), thirdIcon));
+            thirdStageContainer.setBackground(ContextCompat.getDrawable(getActivity(), unselectedProcessDrawable));
+            ivFourthStage.setImageDrawable(ContextCompat.getDrawable(getActivity(), fourthIcon));
+            fourthStageContainer.setBackground(ContextCompat.getDrawable(getActivity(), unselectedProcessDrawable));
+            ivFifthStage.setImageDrawable(ContextCompat.getDrawable(getActivity(), fifthIcon));
+            fifthStageContainer.setBackground(ContextCompat.getDrawable(getActivity(), unselectedProcessDrawable));
         }
     }
 
     public void nextStage() {
         if ((currentProcess + 1) < processes.size() && getActivity() != null) {
-            getCurrentProcessView(getCurrentProcess()).setCircleBackgroundColor(ContextCompat.getColor(getActivity(), unselectedProcessColor));
-            getCurrentProcessView(getCurrentProcess()).setBorderColor(ContextCompat.getColor(getActivity(), unselectedProcessColor));
+            this.getCurrentProcessContainer(getCurrentProcess()).setBackground(ContextCompat.getDrawable(getActivity(), unselectedProcessDrawable));
             if (currentProcess == 0) {
-                AnimatingManager.scaleDownViewFirst(getCurrentProcessView(getCurrentProcess()), 1.5f, 1f);
+                AnimatingManager.scaleDownViewFirst(getCurrentProcessContainer(getCurrentProcess()), 1.5f, 1f);
             } else {
-                AnimatingManager.scaleDownView(getCurrentProcessView(getCurrentProcess()), 1.5f, 1f);
+                AnimatingManager.scaleDownView(getCurrentProcessContainer(getCurrentProcess()), 1.5f, 1f);
             }
             currentProcess++;
-            getCurrentProcessView(getCurrentProcess()).setCircleBackgroundColor(ContextCompat.getColor(getActivity(), selectedProcessColor));
-            getCurrentProcessView(getCurrentProcess()).setBorderColor(ContextCompat.getColor(getActivity(), selectedProcessColor));
+            this.getCurrentProcessContainer(getCurrentProcess()).setBackground(ContextCompat.getDrawable(getActivity(), selectedProcessDrawable));
             if ((currentProcess + 1) == processes.size()) {
-                AnimatingManager.scaleUpViewLast(getCurrentProcessView(getCurrentProcess()), 1f, 1.5f);
+                AnimatingManager.scaleUpViewLast(getCurrentProcessContainer(getCurrentProcess()), 1f, 1.5f);
             } else {
                 if (currentProcess == 0) {
-                    AnimatingManager.scaleUpViewFirst(getCurrentProcessView(getCurrentProcess()), 1f, 1.5f);
+                    AnimatingManager.scaleUpViewFirst(getCurrentProcessContainer(getCurrentProcess()), 1f, 1.5f);
                 } else {
-                    AnimatingManager.scaleUpView(getCurrentProcessView(getCurrentProcess()), 1f, 1.5f);
+                    AnimatingManager.scaleUpView(getCurrentProcessContainer(getCurrentProcess()), 1f, 1.5f);
                 }
             }
         }
@@ -121,20 +125,18 @@ public class ProcessIndicatorView extends Fragment {
 
     public void previousStage() {
         if (currentProcess > 0 && getActivity() != null) {
-            getCurrentProcessView(getCurrentProcess()).setCircleBackgroundColor(ContextCompat.getColor(getActivity(), unselectedProcessColor));
-            getCurrentProcessView(getCurrentProcess()).setBorderColor(ContextCompat.getColor(getActivity(), unselectedProcessColor));
+            this.getCurrentProcessContainer(getCurrentProcess()).setBackground(ContextCompat.getDrawable(getActivity(), unselectedProcessDrawable));
             if ((currentProcess + 1) == processes.size()) {
-                AnimatingManager.scaleDownViewLast(getCurrentProcessView(getCurrentProcess()), 1.5f, 1f);
+                AnimatingManager.scaleDownViewLast(getCurrentProcessContainer(getCurrentProcess()), 1.5f, 1f);
             } else {
-                AnimatingManager.scaleDownView(getCurrentProcessView(getCurrentProcess()), 1.5f, 1f);
+                AnimatingManager.scaleDownView(getCurrentProcessContainer(getCurrentProcess()), 1.5f, 1f);
             }
             currentProcess--;
-            getCurrentProcessView(getCurrentProcess()).setCircleBackgroundColor(ContextCompat.getColor(getActivity(), selectedProcessColor));
-            getCurrentProcessView(getCurrentProcess()).setBorderColor(ContextCompat.getColor(getActivity(), selectedProcessColor));
+            getCurrentProcessContainer(getCurrentProcess()).setBackground(ContextCompat.getDrawable(getActivity(), selectedProcessDrawable));
             if (currentProcess == 0) {
-                AnimatingManager.scaleUpViewFirst(getCurrentProcessView(getCurrentProcess()), 1f, 1.5f);
+                AnimatingManager.scaleUpViewFirst(getCurrentProcessContainer(getCurrentProcess()), 1f, 1.5f);
             } else {
-                AnimatingManager.scaleUpView(getCurrentProcessView(getCurrentProcess()), 1f, 1.5f);
+                AnimatingManager.scaleUpView(getCurrentProcessContainer(getCurrentProcess()), 1f, 1.5f);
             }
         }
     }
@@ -142,93 +144,90 @@ public class ProcessIndicatorView extends Fragment {
     private StageProcess getCurrentProcess() {
         switch (currentProcess) {
             case 0:
-                return StageProcess.Search;
+                return StageProcess.First;
             case 1:
-                return StageProcess.Flight;
+                return StageProcess.Second;
             case 2:
-                return StageProcess.Seat;
+                return StageProcess.Third;
             case 3:
-                return StageProcess.Purchase;
+                return StageProcess.Fourth;
             case 4:
-                return StageProcess.Pay;
+                return StageProcess.Fifth;
             default:
-                return StageProcess.Search;
+                return StageProcess.First;
         }
     }
 
-    private CircleImageView getCurrentProcessView(StageProcess currentProcess) {
+    private FrameLayout getCurrentProcessContainer(StageProcess currentProcess) {
         switch (currentProcess) {
-            case Search:
-                return searchView;
-            case Flight:
-                return fligthView;
-            case Seat:
-                return seatView;
-            case Purchase:
-                return purchaseView;
-            case Pay:
-                return payView;
+            case First:
+                return firstStageContainer;
+            case Second:
+                return secondStageContainer;
+            case Third:
+                return thirdStageContainer;
+            case Fourth:
+                return fourthStageContainer;
             default:
-                return searchView;
+                return fifthStageContainer;
         }
     }
 
     private void initStageProcess() {
         if (getActivity() != null) {
-            getCurrentProcessView(getCurrentProcess()).setCircleBackgroundColor(ContextCompat.getColor(getActivity(), selectedProcessColor));
-            getCurrentProcessView(getCurrentProcess()).setBorderColor(ContextCompat.getColor(getActivity(), selectedProcessColor));
-            AnimatingManager.scaleUpViewFirst(getCurrentProcessView(getCurrentProcess()), 1f, 1.5f);
+            getCurrentProcessContainer(getCurrentProcess()).setBackground(ContextCompat.getDrawable(getActivity(), selectedProcessDrawable));
+            AnimatingManager.scaleUpViewFirst(getCurrentProcessContainer(getCurrentProcess()), 1f, 1.5f);
         }
     }
 
     public static class Builder {
 
         private int trackColor = -1;
-        private int selectedProcessColor = -1;
-        private int unselectedProcessColor = -1;
-        private int searchIcon = -1;
-        private int flightIcon = -1;
-        private int seatIcon = -1;
-        private int purchaseIcon = -1;
-        private int payIcon = -1;
+        private int selectedProcessDrawable = -1;
+        private int unselectedProcessDrawable = -1;
+        private int firstIcon = -1;
+        private int secondIcon = -1;
+        private int thirdIcon = -1;
+        private int fourthIcon = -1;
+        private int fifthIcon = -1;
 
         public Builder setTrackColor(@ColorRes int colorId) {
             this.trackColor = colorId;
             return this;
         }
 
-        public Builder setSelectedProcessColor(@ColorRes int colorId) {
-            this.selectedProcessColor = colorId;
+        public Builder setSelectedProcessDrawable(@DrawableRes int resId) {
+            this.selectedProcessDrawable = resId;
             return this;
         }
 
-        public Builder setUnselectedProcessColor(@ColorRes int colorId) {
-            this.unselectedProcessColor = colorId;
+        public Builder setUnselectedProcessDrawable(@DrawableRes int resId) {
+            this.unselectedProcessDrawable = resId;
             return this;
         }
 
-        public Builder setSearchingStageIcon(@DrawableRes int drawable) {
-            this.searchIcon = drawable;
+        public Builder setFistStageIcon(@DrawableRes int drawable) {
+            this.firstIcon = drawable;
             return this;
         }
 
-        public Builder setFlightStageIcon(@DrawableRes int drawable) {
-            this.flightIcon = drawable;
+        public Builder setSecondStageIcon(@DrawableRes int drawable) {
+            this.secondIcon = drawable;
             return this;
         }
 
-        public Builder setSeatStageIcon(@DrawableRes int drawable) {
-            this.seatIcon = drawable;
+        public Builder setThirdStageIcon(@DrawableRes int drawable) {
+            this.thirdIcon = drawable;
             return this;
         }
 
-        public Builder setPurchaseStageIcon(@DrawableRes int drawable) {
-            this.purchaseIcon = drawable;
+        public Builder setFourthStageIcon(@DrawableRes int drawable) {
+            this.fourthIcon = drawable;
             return this;
         }
 
-        public Builder setPayStageIcon(@DrawableRes int drawable) {
-            this.payIcon = drawable;
+        public Builder setFiftsStageIcon(@DrawableRes int drawable) {
+            this.fifthIcon = drawable;
             return this;
         }
 
@@ -236,13 +235,13 @@ public class ProcessIndicatorView extends Fragment {
             checkNotNull();
             ProcessIndicatorView processIndicatorView = new ProcessIndicatorView();
             processIndicatorView.trackColor = this.trackColor;
-            processIndicatorView.selectedProcessColor = this.selectedProcessColor;
-            processIndicatorView.unselectedProcessColor = this.unselectedProcessColor;
-            processIndicatorView.searchIcon = this.searchIcon;
-            processIndicatorView.flightIcon = this.flightIcon;
-            processIndicatorView.seatIcon = this.seatIcon;
-            processIndicatorView.purchaseIcon = this.purchaseIcon;
-            processIndicatorView.payIcon = this.payIcon;
+            processIndicatorView.selectedProcessDrawable = this.selectedProcessDrawable;
+            processIndicatorView.unselectedProcessDrawable = this.unselectedProcessDrawable;
+            processIndicatorView.firstIcon = this.firstIcon;
+            processIndicatorView.secondIcon = this.secondIcon;
+            processIndicatorView.thirdIcon = this.thirdIcon;
+            processIndicatorView.fourthIcon = this.fourthIcon;
+            processIndicatorView.fifthIcon = this.fifthIcon;
             fragmentManager.beginTransaction().replace(viewId, processIndicatorView).commitAllowingStateLoss();
             return processIndicatorView;
         }
@@ -251,36 +250,36 @@ public class ProcessIndicatorView extends Fragment {
             if (trackColor == -1) {
                 throw new IllegalArgumentException("You must set trackView color to avoid this exception.");
             }
-            if (selectedProcessColor == -1) {
+            if (selectedProcessDrawable == -1) {
                 throw new IllegalArgumentException("You must set current process color to avoid this exception.");
             }
-            if (unselectedProcessColor == -1) {
+            if (unselectedProcessDrawable == -1) {
                 throw new IllegalArgumentException("You must set not current process color to avoid this exception.");
             }
-            if (searchIcon == -1) {
+            if (firstIcon == -1) {
                 throw new IllegalArgumentException("You must set the icon for the searching process to avoid this exception.");
             }
-            if (flightIcon == -1) {
+            if (secondIcon == -1) {
                 throw new IllegalArgumentException("You must set the icon for the flight process to avoid this exception.");
             }
-            if (seatIcon == -1) {
+            if (thirdIcon == -1) {
                 throw new IllegalArgumentException("You must set the icon for the seat process to avoid this exception.");
             }
-            if (purchaseIcon == -1) {
+            if (fourthIcon == -1) {
                 throw new IllegalArgumentException("You must set the icon for the purchase process to avoid this exception.");
             }
-            if (payIcon == -1) {
+            if (fifthIcon == -1) {
                 throw new IllegalArgumentException("You must set the icon for the pay process to avoid this exception.");
             }
         }
     }
 
     private enum StageProcess {
-        Search,
-        Flight,
-        Seat,
-        Purchase,
-        Pay
+        First,
+        Second,
+        Third,
+        Fourth,
+        Fifth
     }
 
 }
